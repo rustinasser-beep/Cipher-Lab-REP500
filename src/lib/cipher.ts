@@ -15,7 +15,9 @@ export const DEFAULT_PBKDF2_ITERATIONS = 600_000;
 export const SALT_LEN = 16;
 export const IV_LEN = 12;
 
-const subtle = window.crypto.subtle;
+const subtle = typeof window !== 'undefined' && window.crypto && window.crypto.subtle
+  ? window.crypto.subtle
+  : ({} as SubtleCrypto);
 
 // Utility functions
 export function bytesToBase64(bytes: Uint8Array): string {
