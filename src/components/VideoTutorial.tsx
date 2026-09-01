@@ -352,35 +352,36 @@ export const VideoTutorial: React.FC<VideoTutorialProps> = ({ lang, onNavigateTa
       </div>
 
       {/* Main Video Presentation Display */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6">
         
-        {/* Left / Center: Interactive Video Stage (8 cols) */}
+        {/* Left / Center: Interactive Video Stage (8 cols on desktop, full width on mobile/tablet) */}
         <div className="lg:col-span-8 space-y-4">
           
-          <div className="bg-[#090d16] border border-slate-800 rounded-2xl overflow-hidden shadow-2xl relative flex flex-col min-h-[460px]">
+          <div className="bg-[#090d16] border border-slate-800 rounded-2xl overflow-hidden shadow-2xl relative flex flex-col min-h-[420px] sm:min-h-[460px]">
             
             {/* Top Video HUD Bar */}
-            <div className="px-4 py-2.5 bg-slate-900/90 border-b border-slate-800/80 flex items-center justify-between font-mono text-xs text-slate-300 z-20">
-              <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
-                <span className="font-bold text-slate-100">
+            <div className="px-3 sm:px-4 py-2 sm:py-2.5 bg-slate-900/90 border-b border-slate-800/80 flex items-center justify-between font-mono text-xs text-slate-300 z-20">
+              <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+                <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse shrink-0" />
+                <span className="font-bold text-slate-100 truncate text-[11px] sm:text-xs">
                   {lang === 'ar' ? 'شرح تفاعلي مباشر' : 'LIVE TUTORIAL DEMO'}
                 </span>
-                <span className="text-slate-500">|</span>
-                <span className="text-amber-400 text-[11px]">
-                  {lang === 'ar' ? `المشهد ${activeScene.id} من ${SCENES.length}` : `Scene ${activeScene.id} of ${SCENES.length}`}
+                <span className="text-slate-500 hidden sm:inline">|</span>
+                <span className="text-amber-400 text-[10px] sm:text-[11px] shrink-0">
+                  {lang === 'ar' ? `المشهد ${activeScene.id}/${SCENES.length}` : `Scene ${activeScene.id}/${SCENES.length}`}
                 </span>
               </div>
 
-              <div className="flex items-center gap-3">
-                <span className="text-slate-400 text-[11px]">
+              <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+                <span className="text-slate-400 text-[10px] sm:text-[11px]">
                   {Math.floor(currentTime)}s / {TOTAL_DURATION}s
                 </span>
                 <button
                   type="button"
                   onClick={() => setIsMuted((prev) => !prev)}
-                  className="p-1 rounded text-slate-400 hover:text-slate-200 transition-colors"
+                  className="p-1 rounded text-slate-400 hover:text-slate-200 transition-colors min-h-[32px] min-w-[32px] flex items-center justify-center cursor-pointer"
                   title={isMuted ? (lang === 'ar' ? 'تشغيل الصوت' : 'Unmute') : (lang === 'ar' ? 'كتم الصوت' : 'Mute')}
+                  aria-label="Toggle mute"
                 >
                   {isMuted ? <VolumeX className="w-4 h-4 text-red-400" /> : <Volume2 className="w-4 h-4 text-emerald-400" />}
                 </button>
@@ -388,44 +389,44 @@ export const VideoTutorial: React.FC<VideoTutorialProps> = ({ lang, onNavigateTa
             </div>
 
             {/* Video Visual Stage Screen */}
-            <div className="flex-1 p-6 flex flex-col justify-center items-center relative overflow-hidden bg-gradient-to-b from-[#0e1424] via-[#090d16] to-[#070a12]">
+            <div className="flex-1 p-3.5 sm:p-6 flex flex-col justify-center items-center relative overflow-hidden bg-gradient-to-b from-[#0e1424] via-[#090d16] to-[#070a12]">
               
               {/* Background Cyber Grid effect */}
               <div className="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:16px_16px] opacity-30 pointer-events-none" />
 
               {/* Scene Dynamic Content */}
-              <div className="w-full max-w-xl z-10 space-y-5 animate-in fade-in zoom-in-95 duration-300">
+              <div className="w-full max-w-xl z-10 space-y-4 sm:space-y-5 animate-in fade-in zoom-in-95 duration-300">
                 
                 {/* Scene Badge & Title */}
-                <div className="text-center space-y-1.5">
-                  <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 inline-block font-mono">
+                <div className="text-center space-y-1 sm:space-y-1.5">
+                  <span className="px-2.5 sm:px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 inline-block font-mono">
                     {lang === 'ar' ? activeScene.titleAr : activeScene.titleEn}
                   </span>
-                  <p className="text-xs text-slate-300 max-w-md mx-auto leading-relaxed">
+                  <p className="text-[11px] sm:text-xs text-slate-300 max-w-md mx-auto leading-relaxed">
                     {lang === 'ar' ? activeScene.subtitleAr : activeScene.subtitleEn}
                   </p>
                 </div>
 
                 {/* Simulated UI Interactive Demo Card */}
                 {activeScene.activeFeature === 'intro' && (
-                  <div className="p-5 rounded-2xl bg-slate-900/90 border border-slate-800 shadow-xl space-y-3.5 text-center">
+                  <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/90 border border-slate-800 shadow-xl space-y-3 sm:space-y-3.5 text-center">
                     <div className="flex justify-center gap-3">
-                      <div className="p-3 rounded-2xl bg-amber-500/20 text-amber-400 border border-amber-500/30">
-                        <Lock className="w-8 h-8" />
+                      <div className="p-2.5 sm:p-3 rounded-2xl bg-amber-500/20 text-amber-400 border border-amber-500/30">
+                        <Lock className="w-6 h-6 sm:w-8 h-8" />
                       </div>
-                      <div className="p-3 rounded-2xl bg-cyan-500/20 text-cyan-400 border border-cyan-500/30">
-                        <Layers className="w-8 h-8" />
+                      <div className="p-2.5 sm:p-3 rounded-2xl bg-cyan-500/20 text-cyan-400 border border-cyan-500/30">
+                        <Layers className="w-6 h-6 sm:w-8 h-8" />
                       </div>
                     </div>
                     <div className="space-y-1 font-mono text-xs">
-                      <div className="text-amber-400 font-bold">AES-256-GCM + REP500 Matrix</div>
-                      <div className="text-slate-400 text-[11px]">PBKDF2-SHA256 (300,000 iter) • 128,000 Decoy Codes • Zero-Knowledge</div>
+                      <div className="text-amber-400 font-bold text-xs sm:text-sm">AES-256-GCM + REP500 Matrix</div>
+                      <div className="text-slate-400 text-[10px] sm:text-[11px]">PBKDF2-SHA256 (300,000 iter) • 128,000 Decoy Codes • Zero-Knowledge</div>
                     </div>
                   </div>
                 )}
 
                 {activeScene.activeFeature === 'key' && (
-                  <div className="p-4 rounded-2xl bg-slate-900/90 border border-amber-500/30 shadow-xl space-y-3 font-mono">
+                  <div className="p-3.5 sm:p-4 rounded-2xl bg-slate-900/90 border border-amber-500/30 shadow-xl space-y-2.5 sm:space-y-3 font-mono">
                     <div className="flex items-center justify-between text-xs text-slate-300 border-b border-slate-800 pb-2">
                       <div className="flex items-center gap-1.5 text-amber-400">
                         <Key className="w-4 h-4" />
@@ -435,18 +436,18 @@ export const VideoTutorial: React.FC<VideoTutorialProps> = ({ lang, onNavigateTa
                         Entropy: 128 bits
                       </span>
                     </div>
-                    <div className="bg-black/50 border border-slate-700 rounded-xl p-2.5 text-xs text-amber-300 flex items-center justify-between">
+                    <div className="bg-black/50 border border-slate-700 rounded-xl p-2 sm:p-2.5 text-[11px] sm:text-xs text-amber-300 flex items-center justify-between">
                       <span className="truncate">{activeScene.mockKey}</span>
-                      <span className="text-[10px] text-slate-500 font-sans">{lang === 'ar' ? 'مطبق تلقائياً' : 'Auto Applied'}</span>
+                      <span className="text-[10px] text-slate-500 font-sans shrink-0 ms-2">{lang === 'ar' ? 'مطبق تلقائياً' : 'Auto Applied'}</span>
                     </div>
                   </div>
                 )}
 
                 {activeScene.activeFeature === 'text-enc' && (
-                  <div className="p-4 rounded-2xl bg-slate-900/90 border border-amber-500/30 shadow-xl space-y-3 font-mono text-xs">
+                  <div className="p-3.5 sm:p-4 rounded-2xl bg-slate-900/90 border border-amber-500/30 shadow-xl space-y-2.5 sm:space-y-3 font-mono text-xs">
                     <div className="space-y-1">
                       <span className="text-slate-400 text-[10px] block">{lang === 'ar' ? 'النص الأصلي المراد تشفيره:' : 'Plaintext to Encrypt:'}</span>
-                      <div className="p-2 rounded-lg bg-black/50 border border-slate-700 text-slate-200 text-[11px]">
+                      <div className="p-2 rounded-lg bg-black/50 border border-slate-700 text-slate-200 text-[10px] sm:text-[11px]">
                         {activeScene.mockInput}
                       </div>
                     </div>
@@ -465,7 +466,7 @@ export const VideoTutorial: React.FC<VideoTutorialProps> = ({ lang, onNavigateTa
                 )}
 
                 {activeScene.activeFeature === 'text-dec' && (
-                  <div className="p-4 rounded-2xl bg-slate-900/90 border border-cyan-500/30 shadow-xl space-y-3 font-mono text-xs">
+                  <div className="p-3.5 sm:p-4 rounded-2xl bg-slate-900/90 border border-cyan-500/30 shadow-xl space-y-2.5 sm:space-y-3 font-mono text-xs">
                     <div className="space-y-1">
                       <span className="text-cyan-400 text-[10px] block">{lang === 'ar' ? 'المظروف المشفر المستلم:' : 'Received Envelope:'}</span>
                       <div className="p-2 rounded-lg bg-black/50 border border-slate-700 text-slate-400 text-[10px] truncate">
@@ -479,7 +480,7 @@ export const VideoTutorial: React.FC<VideoTutorialProps> = ({ lang, onNavigateTa
                     </div>
                     <div className="space-y-1">
                       <span className="text-emerald-400 text-[10px] block">{lang === 'ar' ? 'النص الأصلي المسترجع:' : 'Recovered Plaintext:'}</span>
-                      <div className="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-[11px] font-sans font-bold">
+                      <div className="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-[10px] sm:text-[11px] font-sans font-bold">
                         {activeScene.mockOutput}
                       </div>
                     </div>
@@ -487,21 +488,21 @@ export const VideoTutorial: React.FC<VideoTutorialProps> = ({ lang, onNavigateTa
                 )}
 
                 {activeScene.activeFeature === 'file-enc' && (
-                  <div className="p-4 rounded-2xl bg-slate-900/90 border border-amber-500/30 shadow-xl space-y-3 text-center">
+                  <div className="p-3.5 sm:p-4 rounded-2xl bg-slate-900/90 border border-amber-500/30 shadow-xl space-y-2.5 sm:space-y-3 text-center">
                     <div className="p-3 rounded-xl border-2 border-dashed border-slate-700 bg-black/40 flex flex-col items-center justify-center space-y-1.5">
-                      <FileUp className="w-6 h-6 text-amber-400 animate-bounce" />
-                      <div className="text-xs font-mono font-bold text-slate-200">{activeScene.mockInput}</div>
+                      <FileUp className="w-5 h-5 sm:w-6 h-6 text-amber-400 animate-bounce" />
+                      <div className="text-[11px] sm:text-xs font-mono font-bold text-slate-200">{activeScene.mockInput}</div>
                     </div>
-                    <div className="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30 font-mono text-xs text-amber-300 flex items-center justify-between">
-                      <span className="text-[11px]">🔒 {activeScene.mockOutput}</span>
-                      <span className="text-[10px] bg-amber-500 text-slate-950 px-2 py-0.5 rounded font-bold">{lang === 'ar' ? 'جاهز للتحميل' : 'Ready'}</span>
+                    <div className="p-2 sm:p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30 font-mono text-xs text-amber-300 flex items-center justify-between">
+                      <span className="text-[10px] sm:text-[11px] truncate">🔒 {activeScene.mockOutput}</span>
+                      <span className="text-[10px] bg-amber-500 text-slate-950 px-2 py-0.5 rounded font-bold shrink-0">{lang === 'ar' ? 'جاهز للتحميل' : 'Ready'}</span>
                     </div>
                   </div>
                 )}
 
                 {activeScene.activeFeature === 'inspector' && (
-                  <div className="p-4 rounded-2xl bg-slate-900/90 border border-slate-800 shadow-xl space-y-2 font-mono text-xs">
-                    <div className="grid grid-cols-2 gap-2 text-[10px]">
+                  <div className="p-3.5 sm:p-4 rounded-2xl bg-slate-900/90 border border-slate-800 shadow-xl space-y-2 font-mono text-xs">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[10px]">
                       <div className="p-2 rounded-lg bg-black/50 border border-slate-800 text-slate-300">
                         <span className="text-slate-500 block">Salt (16 bytes):</span>
                         <span className="text-amber-400 truncate block">A9b/xL3kQ298z...</span>
@@ -519,7 +520,7 @@ export const VideoTutorial: React.FC<VideoTutorialProps> = ({ lang, onNavigateTa
                 )}
 
                 {/* Subtitle Teleprompter Bar */}
-                <div className="p-3 rounded-xl bg-black/80 border border-slate-800/80 backdrop-blur text-center text-xs text-amber-200/90 font-sans shadow-lg">
+                <div className="p-2.5 sm:p-3 rounded-xl bg-black/80 border border-slate-800/80 backdrop-blur text-center text-[11px] sm:text-xs text-amber-200/90 font-sans shadow-lg leading-relaxed">
                   {lang === 'ar' ? activeScene.narrationAr : activeScene.narrationEn}
                 </div>
 
@@ -528,7 +529,7 @@ export const VideoTutorial: React.FC<VideoTutorialProps> = ({ lang, onNavigateTa
             </div>
 
             {/* Bottom Video Controls & Timeline Bar */}
-            <div className="p-4 bg-slate-900/95 border-t border-slate-800 space-y-3 z-20">
+            <div className="p-3 sm:p-4 bg-slate-900/95 border-t border-slate-800 space-y-2.5 sm:space-y-3 z-20">
               
               {/* Seek Timeline */}
               <div className="relative">
@@ -548,13 +549,14 @@ export const VideoTutorial: React.FC<VideoTutorialProps> = ({ lang, onNavigateTa
               </div>
 
               {/* Action Buttons */}
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <div className="flex items-center gap-1.5 sm:gap-2">
                   <button
                     type="button"
                     onClick={handlePrevScene}
-                    className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors cursor-pointer"
+                    className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors cursor-pointer min-h-[38px] min-w-[38px] flex items-center justify-center"
                     title={lang === 'ar' ? 'المشهد السابق' : 'Previous Scene'}
+                    aria-label="Previous scene"
                   >
                     <SkipBack className="w-4 h-4" />
                   </button>
@@ -562,8 +564,9 @@ export const VideoTutorial: React.FC<VideoTutorialProps> = ({ lang, onNavigateTa
                   <button
                     type="button"
                     onClick={handleTogglePlay}
-                    className="p-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold transition-all shadow-md shadow-amber-500/20 cursor-pointer"
+                    className="p-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold transition-all shadow-md shadow-amber-500/20 cursor-pointer min-h-[38px] min-w-[38px] flex items-center justify-center"
                     title={isPlaying ? (lang === 'ar' ? 'إيقاف مؤقت' : 'Pause') : (lang === 'ar' ? 'تشغيل' : 'Play')}
+                    aria-label="Play/Pause"
                   >
                     {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5 ms-0.5" />}
                   </button>
@@ -571,8 +574,9 @@ export const VideoTutorial: React.FC<VideoTutorialProps> = ({ lang, onNavigateTa
                   <button
                     type="button"
                     onClick={handleNextScene}
-                    className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors cursor-pointer"
+                    className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors cursor-pointer min-h-[38px] min-w-[38px] flex items-center justify-center"
                     title={lang === 'ar' ? 'المشهد التالي' : 'Next Scene'}
+                    aria-label="Next scene"
                   >
                     <SkipForward className="w-4 h-4" />
                   </button>
@@ -580,8 +584,9 @@ export const VideoTutorial: React.FC<VideoTutorialProps> = ({ lang, onNavigateTa
                   <button
                     type="button"
                     onClick={handleRestart}
-                    className="p-2 rounded-xl text-slate-400 hover:text-slate-200 transition-colors cursor-pointer"
+                    className="p-2 rounded-xl text-slate-400 hover:text-slate-200 transition-colors cursor-pointer min-h-[38px] min-w-[38px] flex items-center justify-center"
                     title={lang === 'ar' ? 'إعادة الشرح من البداية' : 'Restart'}
+                    aria-label="Restart walkthrough"
                   >
                     <RotateCcw className="w-4 h-4" />
                   </button>
@@ -592,10 +597,10 @@ export const VideoTutorial: React.FC<VideoTutorialProps> = ({ lang, onNavigateTa
                     <button
                       type="button"
                       onClick={() => onNavigateTab('text')}
-                      className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center gap-1.5 cursor-pointer"
+                      className="px-3 py-1.5 sm:py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center gap-1.5 cursor-pointer min-h-[38px]"
                     >
                       <Lock className="w-3.5 h-3.5 text-amber-400" />
-                      <span>{lang === 'ar' ? 'جرب التشفير الآن' : 'Try Encrypting Now'}</span>
+                      <span>{lang === 'ar' ? 'جرب التشفير الآن' : 'Try Encrypting'}</span>
                     </button>
                   )}
                 </div>

@@ -89,38 +89,38 @@ export default function App() {
       />
 
       {/* Main Container */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6 space-y-5 sm:space-y-6">
         
         {/* Technical Notice Banner */}
-        <div className="bg-amber-500/10 border border-amber-500/30 rounded-2xl p-4 flex items-start gap-3.5 shadow-lg shadow-amber-500/5">
-          <div className="p-2 rounded-xl bg-amber-500/20 text-amber-400 shrink-0 mt-0.5">
-            <ShieldAlert className="w-5 h-5" />
+        <div className="bg-amber-500/10 border border-amber-500/30 rounded-2xl p-3.5 sm:p-4 flex items-start gap-3 sm:gap-3.5 shadow-lg shadow-amber-500/5">
+          <div className="p-1.5 sm:p-2 rounded-xl bg-amber-500/20 text-amber-400 shrink-0 mt-0.5">
+            <ShieldAlert className="w-4 h-4 sm:w-5 h-5" />
           </div>
-          <div className="text-xs sm:text-sm text-slate-200 leading-relaxed">
-            <span className="font-bold text-amber-300 block mb-1">
+          <div className="text-xs sm:text-sm text-slate-200 leading-relaxed min-w-0">
+            <span className="font-bold text-amber-300 block mb-0.5 sm:mb-1">
               {lang === 'ar' ? 'مواصفات ومعايير الأمان الخوارزمي:' : 'Cryptographic Architecture Notice:'}
             </span>
-            <p className="text-slate-300/90 text-xs">
+            <p className="text-slate-300/90 text-[11px] sm:text-xs">
               {t.noticeWarning}
             </p>
           </div>
         </div>
 
-        {/* Primary View Navigation Tabs */}
-        <div className="flex justify-center border-b border-slate-800/80 pb-3">
-          <nav className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 p-1.5 rounded-2xl bg-[#0f1424] border border-slate-800 shadow-xl max-w-full">
+        {/* Primary View Navigation Tabs - Scrollable on mobile, centered on tablet/desktop */}
+        <div className="flex justify-center border-b border-slate-800/80 pb-2 sm:pb-3 overflow-x-auto no-scrollbar -mx-3 px-3 sm:mx-0 sm:px-0">
+          <nav className="flex items-center gap-1.5 sm:gap-2 p-1.5 rounded-2xl bg-[#0f1424] border border-slate-800 shadow-xl min-w-max">
             
             <button
               id="tab-text"
               type="button"
               onClick={() => setActiveTab('text')}
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+              className={`flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer whitespace-nowrap ${
                 activeTab === 'text'
                   ? 'bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20'
                   : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
               }`}
             >
-              <FileText className="w-4 h-4" />
+              <FileText className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
               <span>{t.tabs.text}</span>
             </button>
 
@@ -128,13 +128,13 @@ export default function App() {
               id="tab-file"
               type="button"
               onClick={() => setActiveTab('file')}
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+              className={`flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer whitespace-nowrap ${
                 activeTab === 'file'
                   ? 'bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20'
                   : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
               }`}
             >
-              <FileUp className="w-4 h-4" />
+              <FileUp className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
               <span>{t.tabs.file}</span>
             </button>
 
@@ -142,13 +142,13 @@ export default function App() {
               id="tab-video"
               type="button"
               onClick={() => setActiveTab('video')}
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+              className={`flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer whitespace-nowrap ${
                 activeTab === 'video'
                   ? 'bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20'
                   : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
               }`}
             >
-              <Video className="w-4 h-4 text-amber-400" />
+              <Video className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400 shrink-0" />
               <span>{t.tabs.videoTutorial}</span>
             </button>
 
@@ -156,13 +156,13 @@ export default function App() {
               id="tab-inspector"
               type="button"
               onClick={() => setActiveTab('inspector')}
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+              className={`flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer whitespace-nowrap ${
                 activeTab === 'inspector'
                   ? 'bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20'
                   : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
               }`}
             >
-              <Search className="w-4 h-4" />
+              <Search className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
               <span>{t.tabs.inspector}</span>
             </button>
 
@@ -170,13 +170,13 @@ export default function App() {
               id="tab-matrix"
               type="button"
               onClick={() => setActiveTab('matrix')}
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+              className={`flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer whitespace-nowrap ${
                 activeTab === 'matrix'
                   ? 'bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20'
                   : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
               }`}
             >
-              <Grid className="w-4 h-4" />
+              <Grid className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
               <span>{t.tabs.matrix}</span>
             </button>
 

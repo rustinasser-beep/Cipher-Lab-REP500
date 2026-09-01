@@ -49,28 +49,30 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
 
         {/* Action Controls */}
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-1.5 sm:gap-3">
           
           {/* Key Generator Shortcut */}
           <button
             id="btn-nav-keygen"
             onClick={onOpenKeyGen}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-xs sm:text-sm font-medium rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-all hover:border-amber-500/50 hover:text-amber-300 cursor-pointer"
+            className="flex items-center gap-1.5 px-2.5 sm:px-3 py-2 text-xs sm:text-sm font-medium rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-all hover:border-amber-500/50 hover:text-amber-300 cursor-pointer min-h-[40px] sm:min-h-[44px]"
             title={t.common.generateKey}
+            aria-label={t.common.generateKey}
           >
-            <Key className="w-4 h-4 text-amber-400" />
-            <span className="hidden md:inline">{t.common.generateKey}</span>
+            <Key className="w-4 h-4 text-amber-400 shrink-0" />
+            <span className="hidden sm:inline">{t.common.generateKey}</span>
           </button>
 
           {/* PBKDF2 Settings */}
           <button
             id="btn-nav-settings"
             onClick={onOpenSettings}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-xs sm:text-sm font-medium rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-all hover:border-cyan-500/50 hover:text-cyan-300 cursor-pointer"
+            className="flex items-center gap-1.5 px-2.5 sm:px-3 py-2 text-xs sm:text-sm font-medium rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-all hover:border-cyan-500/50 hover:text-cyan-300 cursor-pointer min-h-[40px] sm:min-h-[44px]"
             title={t.common.settings}
+            aria-label={t.common.settings}
           >
-            <Sliders className="w-4 h-4 text-cyan-400" />
-            <span className="font-mono text-xs hidden lg:inline">
+            <Sliders className="w-4 h-4 text-cyan-400 shrink-0" />
+            <span className="font-mono text-xs hidden md:inline">
               {(currentIterations / 1000).toFixed(0)}k iter
             </span>
           </button>
@@ -79,8 +81,9 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             id="btn-nav-history"
             onClick={onOpenHistory}
-            className="relative flex items-center justify-center p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-all cursor-pointer"
+            className="relative flex items-center justify-center p-2 sm:px-2.5 sm:py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-all cursor-pointer min-h-[40px] min-w-[40px] sm:min-h-[44px] sm:min-w-[44px]"
             title={t.common.history}
+            aria-label={t.common.history}
           >
             <History className="w-4 h-4" />
             {historyCount > 0 && (
@@ -94,10 +97,11 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             id="btn-nav-lang"
             onClick={onToggleLang}
-            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-all text-xs font-semibold cursor-pointer"
+            className="flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-all text-xs font-semibold cursor-pointer min-h-[40px] sm:min-h-[44px]"
+            aria-label="Toggle language"
           >
-            <Globe className="w-3.5 h-3.5 text-slate-400" />
-            <span>{lang === 'ar' ? 'English' : 'العربية'}</span>
+            <Globe className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+            <span className="text-xs">{lang === 'ar' ? 'EN' : 'عربي'}</span>
           </button>
         </div>
 
